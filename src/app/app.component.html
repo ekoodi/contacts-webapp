@@ -1,4 +1,34 @@
-<div>
-  <router-outlet></router-outlet>
-  <!-- Component is loaded here -->
-</div>
+<mat-sidenav-container class="cw-sidenav-container">
+  <mat-sidenav #sidenav align="start" [mode]="'over'" [opened]="false" class="cw-sidenav">
+    <!-- Sidenav content -->
+    <div>
+      <div fxLayout="column" fxLayoutAlign="center center" class="cw-sidenav-user-area">
+        <div>
+          <mat-icon class="cw-sidenav-avatar" color="primary">account_circle</mat-icon>
+        </div>
+        <div>
+          <span>Sami Anttonen &</span>
+          <br>
+          <span>Jukka Hänninen</span>
+        </div>
+      </div>
+      <div>
+        <span>Sidenav content</span>
+      </div>
+    </div>
+  </mat-sidenav>
+  <div>
+    <!-- App content -->
+    <mat-toolbar color="primary">
+      <!-- Toolbar -->
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon class="mat-18">menu</mat-icon>
+      </button>
+      <span>Contact application</span>
+    </mat-toolbar>
+    <div class="cw-app-container">
+      <!-- App -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-sidenav-container>
