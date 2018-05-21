@@ -1,7 +1,50 @@
-<div *ngIf="contact">
-  <h2>{{contact.firstName}} {{contact.lastName}}</h2>
-  <p>Address: {{contact.streetAddress}}, {{contact.postalCode}} {{contact.city}}</p>
-  <p>Phone: {{contact.phoneNumber}}</p>
-  <p>Email: {{contact.emailAddress}}</p>
-  <button mat-raised-button (click)="onNavigateBack()" color="primary">Back</button>
-</div>
+<mat-card class="cw-card-layout">
+
+  <button mat-icon-button (click)="onNavigateBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <div fxLayout="column" class="cw-contact-detail-fields">
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.firstName"
+               type="text"
+               required
+               placeholder="First name">
+      </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.lastName"
+               type="text"
+               required
+               placeholder="Last name">
+      </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.phoneNumber"
+               type="text"
+               required
+               placeholder="Phone">
+      </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.emailAddress"
+               type="text"
+               required
+               placeholder="Email">
+      </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.streetAddress"
+               type="text"
+               required
+               placeholder="Street address">
+      </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.city"
+               type="text"
+               required
+               placeholder="City">
+      </mat-form-field>
+    </div>
+  </div>
+</mat-card>
+<button mat-fab (click)="onSave()" class="cw-fab">
+  <mat-icon>check</mat-icon>
+</button>
