@@ -10,41 +10,47 @@
         <input matInput [(ngModel)]="contact.firstName"
                type="text"
                required
-               placeholder="First name">
+               placeholder="First name"
+               [readonly]="!editingEnabled">
       </mat-form-field>
       <mat-form-field floatPlaceholder="auto">
         <input matInput [(ngModel)]="contact.lastName"
                type="text"
                required
-               placeholder="Last name">
+               placeholder="Last name"
+               [readonly]="!editingEnabled">
       </mat-form-field>
       <mat-form-field floatPlaceholder="auto">
         <input matInput [(ngModel)]="contact.phoneNumber"
                type="text"
                required
-               placeholder="Phone">
+               placeholder="Phone"
+               [readonly]="!editingEnabled">
       </mat-form-field>
       <mat-form-field floatPlaceholder="auto">
         <input matInput [(ngModel)]="contact.emailAddress"
                type="text"
                required
-               placeholder="Email">
+               placeholder="Email"
+               [readonly]="!editingEnabled">
       </mat-form-field>
       <mat-form-field floatPlaceholder="auto">
         <input matInput [(ngModel)]="contact.streetAddress"
                type="text"
                required
-               placeholder="Street address">
+               placeholder="Street address"
+               [readonly]="!editingEnabled">
       </mat-form-field>
       <mat-form-field floatPlaceholder="auto">
         <input matInput [(ngModel)]="contact.city"
                type="text"
                required
-               placeholder="City">
+               placeholder="City"
+               [readonly]="!editingEnabled">
       </mat-form-field>
     </div>
   </div>
 </mat-card>
-<button mat-fab (click)="onSave()" class="cw-fab">
+<button *ngIf="editingEnabled" mat-fab (click)="onSave()" class="cw-fab">
   <mat-icon>check</mat-icon>
 </button>
