@@ -27,4 +27,16 @@ export class ContactHttpService {
       return response as Contact;
     }));
   }
+
+  put(contact): Observable<Contact> {
+    return this.httpClient.put(this.url + '/' + contact.id, contact).pipe(map(response => {
+      return response as Contact;
+    }));
+  }
+
+  post(contact): Observable<Contact> {
+    return this.httpClient.post(this.url, contact).pipe(map(response => {
+      return response as Contact;
+    }));
+  }
 }
