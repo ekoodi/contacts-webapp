@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpointUrl: 'http://localhost:65319/api/contacts'
+  apiEndpointUrl: 'https://ekoodicontactsapi.azurewebsites.net'
 };
 
 /*
