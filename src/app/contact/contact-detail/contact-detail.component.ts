@@ -5,6 +5,8 @@ import {Contact} from '../contact';
 import {ToolbarService} from '../../ui/toolbar/toolbar.service';
 import {ToolbarOptions} from '../../ui/toolbar/toolbar-options';
 import {ToolbarAction} from '../../ui/toolbar/toolbar-action';
+import {MatSnackBar} from '@angular/material';
+import {NotificationComponent} from '../../ui/notification/notification.component';
 
 @Component({
   selector: 'cw-contact-detail',
@@ -18,7 +20,8 @@ export class ContactDetailComponent implements OnInit {
   contactId: any;
 
   constructor(private router: Router, private route: ActivatedRoute,
-              private contactService: ContactService, private toolbar: ToolbarService) {
+              private contactService: ContactService, private toolbar: ToolbarService,
+              private snackBarService: MatSnackBar) {
     this.contact = new Contact();
     this.editingEnabled = false;
   }
@@ -55,6 +58,7 @@ export class ContactDetailComponent implements OnInit {
       // Create contact
       this.editingEnabled = false;
       this.contactService.createContact(this.contact).subscribe(response => {
+        this.snackBarService.openFromComponent(NotificationComponent, { data: 'Contact added', duration: 2000 });
         console.log(response);
         this.router.navigate(['/contacts']);
       });
@@ -62,6 +66,7 @@ export class ContactDetailComponent implements OnInit {
       // Edit contact
       this.editingEnabled = false;
       this.contactService.updateContact(this.contact).subscribe(response => {
+        this.snackBarService.openFromComponent(NotificationComponent, { data: 'Contact saved', duration: 2000 });
         this.contact = response;
       });
     }
