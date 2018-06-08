@@ -4,6 +4,7 @@ import {ContactService} from '../services/contact.service';
 import {Router} from '@angular/router';
 import {ToolbarService} from '../../ui/toolbar/toolbar.service';
 import {ToolbarOptions} from '../../ui/toolbar/toolbar-options';
+import {DialogService} from '../../ui/services/dialog.service';
 
 @Component({
   selector: 'cw-contact-list',
@@ -15,7 +16,9 @@ export class ContactListComponent implements OnInit {
   contacts: Contact[];
 
   constructor(private contactService: ContactService,
-              private router: Router, private toolbar: ToolbarService) {
+              private router: Router,
+              private toolbar: ToolbarService,
+              private dialogService: DialogService) {
     this.contacts = [];
   }
 
@@ -25,6 +28,11 @@ export class ContactListComponent implements OnInit {
     this.contactService.getContacts().subscribe(response => {
       this.contacts = response;
       console.log(this.contacts);
+    }, error => {
+      console.error('Getting contacts failed!');
+      console.error(error);
+      this.dialogService.errorDialog('Service unavailable');
+      this.router.navigate(['/login']);
     });
   }
 
