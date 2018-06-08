@@ -20,6 +20,7 @@ import { LoginComponent } from './user/login/login.component';
 import {AuthenticationService} from './user/services/authentication.service';
 import {TokenService} from './user/services/token.service';
 import { NotificationComponent } from './ui/notification/notification.component';
+import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     TextToColorPipe,
     ToolbarComponent,
     LoginComponent,
-    NotificationComponent
+    NotificationComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ const appRoutes: Routes = [
     TokenService
   ],
   entryComponents: [
-    NotificationComponent
+    NotificationComponent,
+    ErrorDialogComponent
   ],
   bootstrap: [AppComponent]
 })

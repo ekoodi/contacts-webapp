@@ -7,6 +7,7 @@ import {ToolbarOptions} from '../../ui/toolbar/toolbar-options';
 import {ToolbarAction} from '../../ui/toolbar/toolbar-action';
 import {MatSnackBar} from '@angular/material';
 import {NotificationComponent} from '../../ui/notification/notification.component';
+import {DialogService} from '../../ui/services/dialog.service';
 
 @Component({
   selector: 'cw-contact-detail',
@@ -19,9 +20,12 @@ export class ContactDetailComponent implements OnInit {
   editingEnabled: boolean;
   contactId: any;
 
-  constructor(private router: Router, private route: ActivatedRoute,
-              private contactService: ContactService, private toolbar: ToolbarService,
-              private snackBarService: MatSnackBar) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private contactService: ContactService,
+              private toolbar: ToolbarService,
+              private snackBarService: MatSnackBar,
+              private dialogService: DialogService) {
     this.contact = new Contact();
     this.editingEnabled = false;
   }
@@ -45,7 +49,8 @@ export class ContactDetailComponent implements OnInit {
       }, error => {
         console.error('Getting contact failed!');
         console.error(error);
-        this.router.navigate(['/contacts']);
+        this.dialogService.errorDialog('Service unavailable');
+        this.router.navigate(['/login']);
       });
     }
 
@@ -61,6 +66,9 @@ export class ContactDetailComponent implements OnInit {
         this.snackBarService.openFromComponent(NotificationComponent, { data: 'Contact added', duration: 2000 });
         console.log(response);
         this.router.navigate(['/contacts']);
+      }, error => {
+        this.dialogService.errorDialog('Adding contact failed');
+        this.editingEnabled = true;
       });
     } else {
       // Edit contact
@@ -68,6 +76,9 @@ export class ContactDetailComponent implements OnInit {
       this.contactService.updateContact(this.contact).subscribe(response => {
         this.snackBarService.openFromComponent(NotificationComponent, { data: 'Contact saved', duration: 2000 });
         this.contact = response;
+      }, error => {
+        this.dialogService.errorDialog('Saving contact failed');
+        this.editingEnabled = true;
       });
     }
 
@@ -95,6 +106,9 @@ export class ContactDetailComponent implements OnInit {
     this.editingEnabled = false;
     this.contactService.deleteContact(this.contact).subscribe(() => {
       this.router.navigate(['/contacts']);
+    }, error => {
+      this.dialogService.errorDialog('Deleting contact failed');
+      this.editingEnabled = true;
     });
   }
 
