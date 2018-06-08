@@ -19,6 +19,7 @@ import {ToolbarService} from './ui/toolbar/toolbar.service';
 import { LoginComponent } from './user/login/login.component';
 import {AuthenticationService} from './user/services/authentication.service';
 import {TokenService} from './user/services/token.service';
+import { NotificationComponent } from './ui/notification/notification.component';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     ContactDetailComponent,
     TextToColorPipe,
     ToolbarComponent,
-    LoginComponent
+    LoginComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,9 @@ const appRoutes: Routes = [
     ToolbarService,
     AuthenticationService,
     TokenService
+  ],
+  entryComponents: [
+    NotificationComponent
   ],
   bootstrap: [AppComponent]
 })
