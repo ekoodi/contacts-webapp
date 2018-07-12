@@ -21,6 +21,7 @@ export class ToolbarComponent implements OnInit {
 
     this.toolbar.getToolbarOptions().subscribe((options: ToolbarOptions) => {
       this.options = options;
+      console.log(this.options);
     });
 
   }

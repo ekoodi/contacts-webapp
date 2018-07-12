@@ -10,6 +10,7 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatListModule} from '@angular/material/list';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 
 const materialModules = [
   MatButtonModule,
@@ -22,7 +23,8 @@ const materialModules = [
   MatCardModule,
   MatInputModule,
   MatSnackBarModule,
-  MatDialogModule
+  MatDialogModule,
+  ScrollDispatchModule
 ];
 
 @NgModule({

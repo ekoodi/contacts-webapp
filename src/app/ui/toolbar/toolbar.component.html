@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="!options.hidden">
   <button *ngIf="!options.backEnabled" mat-icon-button (click)="onMenuClick()">
     <mat-icon>menu</mat-icon>
   </button>

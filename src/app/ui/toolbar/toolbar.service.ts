@@ -21,4 +21,22 @@ export class ToolbarService {
   setToolbarOptions(options: ToolbarOptions): void {
     this.toolbarOptions.next(options);
   }
+
+  hideToolbar(): void {
+    const options = this.toolbarOptions.getValue();
+    if (options) {
+      options.hidden = true;
+      // console.log(options);
+      this.toolbarOptions.next(options);
+    }
+  }
+
+  showToolbar(): void {
+    const options = this.toolbarOptions.getValue();
+    if (options) {
+      options.hidden = false;
+      // console.log(options);
+      this.toolbarOptions.next(options);
+    }
+  }
 }

@@ -24,11 +24,14 @@
     </div>
   </mat-sidenav>
 
-  <div fxFlexFill class="cw-sidenav-content">
-    <cw-toolbar (MenuClick)="sidenav.toggle()"></cw-toolbar>
-    <div class="cw-app-container">
-      <!-- App -->
-      <router-outlet></router-outlet>
+  <mat-sidenav-content>
+    <div fxFlexFill class="cw-sidenav-content">
+      <cw-toolbar (MenuClick)="sidenav.toggle()"></cw-toolbar>
+      <div class="cw-app-container" cdkScrollable>
+        <!-- App -->
+        <router-outlet></router-outlet>
+      </div>
     </div>
-  </div>
+  </mat-sidenav-content>
+
 </mat-sidenav-container>
